@@ -5,8 +5,8 @@
 class Object
 {
 	public:
-		sf::RectangleShape shape();
-		sf::Vector2f size();
-		void weight(float gravity, sf::Vector2f size(sf::Vector2f dimensions(int x, int y)));
+		//sf::RectangleShape shape();
+		//sf::Vector2f size();
+		//void weight(float gravity, sf::Vector2f size(sf::Vector2f dimensions(int x, int y)));
 };
 
