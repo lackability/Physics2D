@@ -1,13 +1,6 @@
 #pragma once
 class Environment
 {
-	class Weather {
-		public:
-			//descriptions of weather, rain will cause friction slip, etc...
-			void rain();
-			void snow();
-			void clear();
-	};
 
 	private:
 		//unsure if friction should be in the envirnoment stage

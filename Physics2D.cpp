@@ -1,5 +1,6 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui-SFML.h"
+#include "Object.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
@@ -10,6 +11,11 @@ int main()
     sf::RenderWindow window(sf::VideoMode(640, 480), "");
     window.setVerticalSyncEnabled(true);
     ImGui::SFML::Init(window);
+    Object object; 
+
+    object.setBreakable(true);
+    std::cout << object.getBreakable() << std::endl;
+    
 
     sf::Color bgColor;
 

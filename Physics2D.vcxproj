@@ -153,6 +153,7 @@
     <ClCompile Include="SFML-2.5.1\include\imgui\imgui_draw.cpp" />
     <ClCompile Include="SFML-2.5.1\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="SFML-2.5.1\include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Weather.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="SFML-2.5.1\include\imgui\imgui-SFML_export.h" />
     <ClInclude Include="SFML-2.5.1\include\imgui\imgui.h" />
     <ClInclude Include="SFML-2.5.1\include\imgui\imgui_internal.h" />
+    <ClInclude Include="Weather.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
