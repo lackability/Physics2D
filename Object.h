@@ -6,7 +6,7 @@ class Object
 {
 	private:
 		sf::RectangleShape shape(); //stick to rectangle for testing 
-		bool breakable();
+		bool breakable(); 
 		bool groundstateMovability(); //can it move from resistence from ground vs force extered? 
 
 	public:
