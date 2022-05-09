@@ -46,7 +46,7 @@ int main()
         }
 
         // Window title text edit
-        ImGui::InputText("Window title", windowTitle, 255);
+        ImGui::InputText("Properties", windowTitle, 255);
 
         if (ImGui::Button("Update window title")) {
             // this code gets if user clicks on the button

@@ -4,9 +4,16 @@
 #include <SFML/Graphics.hpp>
 class Object
 {
+	private:
+		sf::RectangleShape shape(); //stick to rectangle for testing 
+		bool breakable();
+		bool groundstateMovability(); //can it move from resistence from ground vs force extered? 
+
 	public:
-		//sf::RectangleShape shape();
-		//sf::Vector2f size();
-		//void weight(float gravity, sf::Vector2f size(sf::Vector2f dimensions(int x, int y)));
+		float mass(); //in terms of grams or kilograms
+		float weight(float gravity); 
+		float velocity(); //simple
+		float accerlation();
+
 };
 
