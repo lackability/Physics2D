@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
 class Object
 {
 	private:
@@ -12,9 +14,9 @@ class Object
 
 
 	public:
-		float weight(float gravity, int mass); 
-		float velocity(); //simple
-		float accerlation();
+		float getWeight(float gravity, int mass); 
+		float getVelocity(); //simple
+		float getAccerlation();
 
 		int getMass() {
 			return mass;
