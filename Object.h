@@ -11,7 +11,7 @@ class Object
 
 		bool breakable; 
 		int mass; //in terms of grams or kilograms
-		bool select(); // select operation
+		
 		bool groundstateMovability(); //can it move from resistence from ground vs force extered? 
 
 
@@ -19,6 +19,8 @@ class Object
 		float getWeight(float gravity, int mass); 
 		float getVelocity(); //simple
 		float getAccerlation();
+
+		bool select(); // select operation
 
 		int getMass() {
 			return mass;
@@ -36,5 +38,14 @@ class Object
 			breakable = status;
 		};
 
+		sf::CircleShape getShape() {
+			return shape;
+		}
+
+		void setShape(sf::CircleShape newshape) {
+			shape = newshape;
+		}
+		
+		
 };
 

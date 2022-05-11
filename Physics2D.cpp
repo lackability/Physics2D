@@ -8,11 +8,12 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 960), "");
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
     window.setVerticalSyncEnabled(true);
     ImGui::SFML::Init(window);
     Object object; 
-
+    sf::CircleShape circle(80);
+    object.setShape(circle);
     object.setBreakable(true);
     std::cout << object.getBreakable() << std::endl;
     
@@ -36,6 +37,11 @@ int main()
 
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
+                    object.select();
+                }
             }
 
         }
@@ -71,10 +77,9 @@ int main()
         
         ImGui::SFML::Render(window);
 
-        sf::RectangleShape rectangle(sf::Vector2f(120, 50)); // set this to the object "select" test
-        rectangle.setFillColor(sf::Color::Cyan);
+        circle.setFillColor(sf::Color::Cyan);
 
-        window.draw(rectangle);
+        window.draw(object.getShape());
 
         window.display();
         

@@ -12,9 +12,9 @@ bool Object::select()
 	
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
 
-	if (mousePos.x <= mousePos.x + width && mousePos.x >= mousePos.x - width) {
+	if (mousePos.x <= mousePos.x + width &&	 mousePos.x >= mousePos.x - width) {
 		if (mousePos.y <= mousePos.y + height && mousePos.y >= mousePos.y - height) {
-			this->shape.setPosition(mousePos.x, mousePos.y);
+			this->shape.setPosition(mousePos.x-width, mousePos.y-height);
 			return true; //isselected
 		}
 	}
