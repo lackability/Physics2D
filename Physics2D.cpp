@@ -8,7 +8,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "");
+    sf::RenderWindow window(sf::VideoMode(1280, 960), "");
     window.setVerticalSyncEnabled(true);
     ImGui::SFML::Init(window);
     Object object; 
@@ -28,6 +28,7 @@ int main()
     window.setTitle(windowTitle);
     window.resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
     sf::Clock deltaClock;
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -36,11 +37,14 @@ int main()
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-        }
 
+        }
+        
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
+       
+        std::cout << sf::Mouse::getPosition().x << "," << sf::Mouse::getPosition().y << std::endl;
 
                                        // Background color edit
         if (ImGui::ColorEdit3("Background color", color)) {
@@ -60,11 +64,21 @@ int main()
             // but I do this to show how buttons work :)
             window.setTitle(windowTitle);
         }
+        
         ImGui::End(); // end window
-
+        
         window.clear(bgColor); // fill background with color
+        
         ImGui::SFML::Render(window);
+
+        sf::RectangleShape rectangle(sf::Vector2f(120, 50)); // set this to the object "select" test
+        rectangle.setFillColor(sf::Color::Cyan);
+
+        window.draw(rectangle);
+
         window.display();
+        
+
     }
 
     ImGui::SFML::Shutdown();

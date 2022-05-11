@@ -7,9 +7,11 @@
 class Object
 {
 	private:
-		sf::RectangleShape shape; //stick to rectangle for testing 
+		sf::CircleShape shape; // circle shape can make triangles, any other geometrical standard shape
+
 		bool breakable; 
 		int mass; //in terms of grams or kilograms
+		bool select(); // select operation
 		bool groundstateMovability(); //can it move from resistence from ground vs force extered? 
 
 
