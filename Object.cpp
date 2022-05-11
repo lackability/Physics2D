@@ -12,8 +12,8 @@ bool Object::select()
 	
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
 
-	if (mousePos.x <= mousePos.x + width &&	 mousePos.x >= mousePos.x - width) {
-		if (mousePos.y <= mousePos.y + height && mousePos.y >= mousePos.y - height) {
+	if ((mousePos.x <= mousePos.x + width) && (mousePos.x >= mousePos.x - width)) {
+		if ((mousePos.y <= mousePos.y + height) && (mousePos.y >= mousePos.y - height)) {
 			this->shape.setPosition(mousePos.x-width, mousePos.y-height);
 			return true; //isselected
 		}
@@ -34,15 +34,14 @@ float Object::getVelocity()
 	return 0.0f;
 }
 
-//float Object::getAccerlation()
-//{
-//	if (this->isSelected) {
-//		float initX = sf::Mouse::getPosition().x;
-//		float initY = sf::Mouse::getPosition().y;
-//
-//	}
-//	
-//	
-//	if ()
-//	return 0.0f;
-//}
+float Object::getAccerlation()
+{
+	if (this->select()) {
+		float initX = sf::Mouse::getPosition().x;
+		float initY = sf::Mouse::getPosition().y;
+
+	}
+
+
+	return 0.0f;
+}

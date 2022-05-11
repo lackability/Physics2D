@@ -20,7 +20,7 @@ class Object
 		float getVelocity(); //simple
 		float getAccerlation();
 
-		bool select(); // select operation
+		bool select(); // select operation, returns isSelected t/f
 
 		int getMass() {
 			return mass;

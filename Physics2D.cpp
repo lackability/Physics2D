@@ -9,8 +9,9 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(144);
     ImGui::SFML::Init(window);
+
     Object object; 
     sf::CircleShape circle(80);
     object.setShape(circle);
@@ -43,14 +44,13 @@ int main()
                     object.select();
                 }
             }
-
         }
         
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
        
-        std::cout << sf::Mouse::getPosition().x << "," << sf::Mouse::getPosition().y << std::endl;
+        std::cout << sf::Mouse::getPosition().x << "," << sf::Mouse::getPosition().y << "," << object.getShape().getRadius() << std::endl;
 
                                        // Background color edit
         if (ImGui::ColorEdit3("Background color", color)) {
@@ -77,7 +77,7 @@ int main()
         
         ImGui::SFML::Render(window);
 
-        circle.setFillColor(sf::Color::Cyan);
+        object.getShape().setFillColor(sf::Color::Cyan);
 
         window.draw(object.getShape());
 
