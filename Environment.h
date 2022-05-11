@@ -4,7 +4,7 @@ class Environment
 
 	private:
 		//unsure if friction should be in the envirnoment stage
-		bool frictionState(); // friciton on or off
+		bool frictionState()						; // friciton on or off
 
 	public:
 		float gravity(); //gravity described in envirnoment

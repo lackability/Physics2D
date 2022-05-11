@@ -9,7 +9,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(144);
+    window.setFramerateLimit(2);
     ImGui::SFML::Init(window);
 
     Object object; 
@@ -32,6 +32,8 @@ int main()
     sf::Clock deltaClock;
 
     while (window.isOpen()) {
+        sf::Vector2f initPos = object.getShape().getPosition();
+
         sf::Event event;
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
@@ -49,8 +51,6 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
-       
-        std::cout << sf::Mouse::getPosition().x << "," << sf::Mouse::getPosition().y << "," << object.getShape().getRadius() << std::endl;
 
                                        // Background color edit
         if (ImGui::ColorEdit3("Background color", color)) {
@@ -70,14 +70,11 @@ int main()
             // but I do this to show how buttons work :)
             window.setTitle(windowTitle);
         }
-        
         ImGui::End(); // end window
-        
-        window.clear(bgColor); // fill background with color
-        
-        ImGui::SFML::Render(window);
 
-        object.getShape().setFillColor(sf::Color::Cyan);
+        window.clear(bgColor); // fill background with color
+        std::cout << object.getDisplacement(initPos).x << "," << object.getDisplacement(initPos).y << std::endl;
+        ImGui::SFML::Render(window);
 
         window.draw(object.getShape());
 

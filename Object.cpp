@@ -46,3 +46,10 @@ float Object::getAccerlation()
 
 	return 0.0f;
 }
+
+sf::Vector2f Object::getDisplacement(sf::Vector2f initPos)
+{
+	sf::Vector2f finalPos = this->getShape().getPosition();
+	sf::Vector2f displacement = sf::Vector2f((finalPos.x - initPos.x), (finalPos.y - initPos.y));
+	return displacement;
+}
