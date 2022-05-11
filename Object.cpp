@@ -7,14 +7,15 @@
 
 bool Object::select()
 {
-	float width = this->shape.getRadius();
-	float height = this->shape.getRadius();
+	//can replace with rectangle shape
+	float width = 2*this->shape.getRadius();
+	float height = 2*this->shape.getRadius();
 	
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
 
-	if ((mousePos.x <= mousePos.x + width) && (mousePos.x >= mousePos.x - width)) {
-		if ((mousePos.y <= mousePos.y + height) && (mousePos.y >= mousePos.y - height)) {
-			this->shape.setPosition(mousePos.x-width, mousePos.y-height);
+	if ((mousePos.x <= this->shape.getPosition().x + width) && (mousePos.x >= this->shape.getPosition().x)) {
+		if ((mousePos.y <= this->shape.getPosition().y + height) && (mousePos.y >= this->shape.getPosition().y)) {
+			this->shape.setPosition(mousePos.x-(width/2), mousePos.y-(height/2));
 			return true; //isselected
 		}
 	}
