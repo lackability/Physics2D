@@ -7,19 +7,8 @@ bool Object::select(bool selected)
 	float height = 2*this->shape.getRadius();
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
 
-	if (selected == false) {		// if mousebutton released, this happens
-		this->shape.setPosition(mousePos.x - (width / 2), mousePos.y - (height / 2));
-		return false;
-	} 
-	else {		// if pressed, must follow these guidlines to move position to mouse
-		if ((mousePos.x <= this->shape.getPosition().x + width) && (mousePos.x >= this->shape.getPosition().x)) {		//hitbox checker
-			if ((mousePos.y <= this->shape.getPosition().y + height) && (mousePos.y >= this->shape.getPosition().y)) {
-				this->shape.setPosition(mousePos.x - (width / 2), mousePos.y - (height / 2));
-				bool selected = true;	// hooked onto mouse
-				return true;
-			}
-		}
-	}
+	this->shape.setPosition(mousePos.x - (width / 2), mousePos.y - (height / 2));
+	return false;
 }
 
 float Object::getWeight(float gravity, int mass) //returns weight in newtons/unit

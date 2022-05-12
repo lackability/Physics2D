@@ -15,7 +15,7 @@ int main()
     Object object; 
     sf::CircleShape circle(80);
     object.setShape(circle);
-    
+    int diameter = 2 * object.getShape().getRadius();
     bool selected = false; //select 
     sf::Color bgColor;
 
@@ -31,6 +31,7 @@ int main()
 
     while (window.isOpen()) {
         sf::Vector2f initPos = object.getShape().getPosition();
+        sf::Vector2i mousePos = sf::Mouse::getPosition();
 
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -42,9 +43,14 @@ int main()
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    selected = true;
+                    if ((mousePos.x <= initPos.x + diameter) && (mousePos.x >= initPos.x)) {		//hitbox checker
+                        if ((mousePos.y <= initPos.y + diameter) && (mousePos.y >= initPos.y)) {
+                            selected = true;
+                        }
+                    }
                 }
             }
+
             if (event.type == sf::Event::MouseButtonReleased) {
                 selected = false;
             }
