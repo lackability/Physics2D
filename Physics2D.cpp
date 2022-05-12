@@ -49,6 +49,7 @@ int main()
                 selected = false;
             }
         }
+
         if (selected == true) {
             object.select(selected); // is "hold" to drag command
         }
