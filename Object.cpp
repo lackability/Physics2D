@@ -5,22 +5,27 @@
 	//	float totalweight = gravity * this->shape;
 	//}
 
-bool Object::select()
+bool Object::select(bool selected)
 {
 	//can replace with rectangle shape
 	float width = 2*this->shape.getRadius();
 	float height = 2*this->shape.getRadius();
-	
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
 
-	if ((mousePos.x <= this->shape.getPosition().x + width) && (mousePos.x >= this->shape.getPosition().x)) {
-		if ((mousePos.y <= this->shape.getPosition().y + height) && (mousePos.y >= this->shape.getPosition().y)) {
-			this->shape.setPosition(mousePos.x-(width/2), mousePos.y-(height/2));
-			return true; //isselected
+	if (selected != true) {
+		if ((mousePos.x <= this->shape.getPosition().x + width) && (mousePos.x >= this->shape.getPosition().x)) {
+			if ((mousePos.y <= this->shape.getPosition().y + height) && (mousePos.y >= this->shape.getPosition().y)) {
+				this->shape.setPosition(mousePos.x - (width / 2), mousePos.y - (height / 2));
+				bool selected = true;	// hooked onto mouse
+				return false;
+			}
 		}
 	}
-
-	return false;
+	else {
+		this->shape.setPosition(mousePos.x - (width / 2), mousePos.y - (height / 2));
+		return true;
+	}
+	
 }
 
 float Object::getWeight(float gravity, int mass)
@@ -29,21 +34,14 @@ float Object::getWeight(float gravity, int mass)
 	return weight;
 }
 
-float Object::getVelocity()
+float Object::getVelocity(sf::Vector2f displacement)
 {
-
-	return 0.0f;
+	float velocity = abs(sqrt(pow(displacement.x, 2) + pow(displacement.y, 2))); //pygathorean theorem
+	return velocity;
 }
 
 float Object::getAccerlation(sf::Vector2f displacement)
 {
-	if (this->select()) {
-		float initX = sf::Mouse::getPosition().x;
-		float initY = sf::Mouse::getPosition().y;
-
-	}
-
-
 	return 0.0f;
 }
 

@@ -16,11 +16,11 @@ class Object
 
 	public:
 		float getWeight(float gravity, int mass); 
-		float getVelocity(); //simple
+		float getVelocity(sf::Vector2f displacement); //simple
 		float getAccerlation(sf::Vector2f displacement);
 		sf::Vector2f getDisplacement(sf::Vector2f initPos);
 
-		bool select(); // select operation, returns isSelected t/f
+		bool select(bool selected); // select operation, returns isSelected t/f
 
 		int getMass() {
 			return mass;

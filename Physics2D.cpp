@@ -9,14 +9,12 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(144);
+    window.setFramerateLimit(30);
     ImGui::SFML::Init(window);
 
     Object object; 
     sf::CircleShape circle(80);
     object.setShape(circle);
-    object.setBreakable(true);
-    std::cout << object.getBreakable() << std::endl;
     
     bool selected = false; //select 
     sf::Color bgColor;
@@ -51,9 +49,8 @@ int main()
                 selected = false;
             }
         }
-
         if (selected == true) {
-            object.select(); // is "hold" to drag command
+            object.select(selected); // is "hold" to drag command
         }
         
         
@@ -84,8 +81,9 @@ int main()
         window.clear(bgColor); // fill background with color
 
         //console outputs
-        std::cout << object.getDisplacement(initPos).x << "," << object.getDisplacement(initPos).y << std::endl;
-
+        sf::Vector2f displacement = object.getDisplacement(initPos);
+        /*std::cout << displacement.x << "," << displacement.y << std::endl;*/
+        std::cout << object.getVelocity(displacement) << std::endl;
 
 
         ImGui::SFML::Render(window);
