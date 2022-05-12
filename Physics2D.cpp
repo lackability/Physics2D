@@ -9,7 +9,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(144);
     ImGui::SFML::Init(window);
 
     Object object; 
