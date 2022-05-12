@@ -43,10 +43,13 @@ int main()
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    if ((mousePos.x <= initPos.x + diameter) && (mousePos.x >= initPos.x)) {		//hitbox checker
-                        if ((mousePos.y <= initPos.y + diameter) && (mousePos.y >= initPos.y)) {
-                            selected = true;
-                        }
+                    //if ((mousePos.x <= initPos.x + diameter) && (mousePos.x >= initPos.x)) {		//hitbox checker
+                    //    if ((mousePos.y <= initPos.y + diameter) && (mousePos.y >= initPos.y)) {
+                    //        selected = true;
+                    //    }
+                    //}
+                    if (object.getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) {
+                        selected = true;
                     }
                 }
             }
