@@ -9,7 +9,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(2);
+    window.setFramerateLimit(144);
     ImGui::SFML::Init(window);
 
     Object object; 
@@ -18,7 +18,7 @@ int main()
     object.setBreakable(true);
     std::cout << object.getBreakable() << std::endl;
     
-
+    bool selected = false; //select 
     sf::Color bgColor;
 
     float color[3] = { 0.f, 0.f, 0.f };
@@ -41,12 +41,21 @@ int main()
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    object.select();
+                    selected = true;
                 }
             }
+            if (event.type == sf::Event::MouseButtonReleased) {
+                selected = false;
+            }
         }
+
+        if (selected == true) {
+            object.select(); // is "hold" to drag command
+        }
+        
         
         ImGui::SFML::Update(window, deltaClock.restart());
 
@@ -73,7 +82,12 @@ int main()
         ImGui::End(); // end window
 
         window.clear(bgColor); // fill background with color
+
+        //console outputs
         std::cout << object.getDisplacement(initPos).x << "," << object.getDisplacement(initPos).y << std::endl;
+
+
+
         ImGui::SFML::Render(window);
 
         window.draw(object.getShape());

@@ -35,7 +35,7 @@ float Object::getVelocity()
 	return 0.0f;
 }
 
-float Object::getAccerlation()
+float Object::getAccerlation(sf::Vector2f displacement)
 {
 	if (this->select()) {
 		float initX = sf::Mouse::getPosition().x;
