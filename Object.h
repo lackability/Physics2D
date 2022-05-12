@@ -15,6 +15,7 @@ class Object
 
 
 	public:
+		sf::CircleShape getShape();
 		float getWeight(float gravity, int mass); 
 		float getVelocity(sf::Vector2f displacement); //simple
 		float getAccerlation(sf::Vector2f displacement);
@@ -37,10 +38,6 @@ class Object
 		void setBreakable(bool status) {
 			breakable = status;
 		};
-
-		sf::CircleShape getShape() {
-			return shape;
-		}
 
 		void setShape(sf::CircleShape newshape) {
 			shape = newshape;
