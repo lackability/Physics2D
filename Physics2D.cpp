@@ -9,7 +9,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(144);
+    window.setFramerateLimit(8);
     ImGui::SFML::Init(window);
 
     Object object; 
@@ -28,10 +28,12 @@ int main()
     window.setTitle(windowTitle);
     window.resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
     sf::Clock deltaClock;
+    sf::Vector2f displacement;
 
     while (window.isOpen()) {
         sf::Vector2f initPos = object.getShape().getPosition();
         sf::Vector2i mousePos = sf::Mouse::getPosition();
+        float initVelocity = object.getVelocity(displacement);
 
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -43,12 +45,7 @@ int main()
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    //if ((mousePos.x <= initPos.x + diameter) && (mousePos.x >= initPos.x)) {		//hitbox checker
-                    //    if ((mousePos.y <= initPos.y + diameter) && (mousePos.y >= initPos.y)) {
-                    //        selected = true;
-                    //    }
-                    //}
-                    if (object.getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) {
+                    if (object.getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) { //hitbox checker
                         selected = true;
                     }
                 }
@@ -62,8 +59,11 @@ int main()
         if (selected == true) {
             object.select(selected); // is "hold" to drag command
         }
+  
         
-        
+
+
+
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
@@ -91,9 +91,10 @@ int main()
         window.clear(bgColor); // fill background with color
 
         //console outputs
-        sf::Vector2f displacement = object.getDisplacement(initPos);
-        /*std::cout << displacement.x << "," << displacement.y << std::endl;*/
-        std::cout << object.getVelocity(displacement) << std::endl;
+        
+        displacement = object.getDisplacement(initPos); // comparsion between old and new pos
+        float finalVelocity = object.getVelocity(displacement);
+        std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;
 
 
         ImGui::SFML::Render(window);

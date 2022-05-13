@@ -23,9 +23,10 @@ float Object::getVelocity(sf::Vector2f displacement)
 	return velocity;
 }
 
-float Object::getAccerlation(sf::Vector2f displacement)
+float Object::getAcceleration(float initVelocity, float finalVelocity)
 {
-	return 0.0f;
+	float acceleration = finalVelocity - initVelocity;
+	return acceleration;
 }
 
 sf::Vector2f Object::getDisplacement(sf::Vector2f initPos) //displacement in units

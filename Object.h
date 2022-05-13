@@ -18,7 +18,7 @@ class Object
 		sf::CircleShape getShape();
 		float getWeight(float gravity, int mass); 
 		float getVelocity(sf::Vector2f displacement); //simple
-		float getAccerlation(sf::Vector2f displacement);
+		float getAcceleration(float initVelocity, float finalVelocity);
 		sf::Vector2f getDisplacement(sf::Vector2f initPos);
 
 		bool select(bool selected); // select operation, returns isSelected t/f
