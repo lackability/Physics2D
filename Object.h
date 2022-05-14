@@ -11,17 +11,19 @@ class Object
 		sf::CircleShape shape; // circle shape can make triangles, any other geometrical standard shape
 		bool breakable; 
 		int mass; //in terms of grams or kilograms
-		bool groundstateMovability(); //can it move from resistence from ground vs force extered? 
 
 
 	public:
-		sf::CircleShape getShape();
 		float getWeight(float gravity, int mass); 
 		float getVelocity(sf::Vector2f displacement); //simple
 		float getAcceleration(float initVelocity, float finalVelocity);
 		sf::Vector2f getDisplacement(sf::Vector2f initPos);
 
 		bool select(bool selected); // select operation, returns isSelected t/f
+
+		sf::CircleShape getShape() {
+			return shape;
+		}
 
 		int getMass() {
 			return mass;

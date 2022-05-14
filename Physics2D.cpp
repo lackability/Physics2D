@@ -1,6 +1,7 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui-SFML.h"
 #include "Object.h"
+#include "Environment.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
@@ -9,10 +10,15 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
-    window.setFramerateLimit(8);
+    window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
+    //making environemtn now
+    Environment environment;
+
+    sf::RectangleShape base = environment.base(window);
 
     Object object; 
+    Object object2;
     sf::CircleShape circle(80);
     object.setShape(circle);
     int diameter = 2 * object.getShape().getRadius();
@@ -67,6 +73,7 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
+        base.setFillColor(sf::Color::Cyan);
 
                                        // Background color edit
         if (ImGui::ColorEdit3("Background color", color)) {
@@ -93,13 +100,15 @@ int main()
         //console outputs
         
         displacement = object.getDisplacement(initPos); // comparsion between old and new pos
-        float finalVelocity = object.getVelocity(displacement);
-        std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;
+        /*float finalVelocity = object.getVelocity(displacement);
+        std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;*/
+        std::cout << object.getShape().getGlobalBounds() << "," << object.getShape().getGlobalBounds() << std::endl;
 
 
         ImGui::SFML::Render(window);
 
         window.draw(object.getShape());
+        window.draw(base);
 
         window.display();
         

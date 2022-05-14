@@ -35,7 +35,3 @@ sf::Vector2f Object::getDisplacement(sf::Vector2f initPos) //displacement in uni
 	sf::Vector2f displacement = sf::Vector2f((finalPos.x - initPos.x), (finalPos.y - initPos.y));
 	return displacement;
 }
-
-sf::CircleShape Object::getShape() {
-	return shape;
-}
