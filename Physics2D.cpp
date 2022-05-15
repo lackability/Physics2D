@@ -40,7 +40,7 @@ int main()
 
     while (window.isOpen()) {
         sf::Vector2f initPos = object.getShape().getPosition();
-        sf::Vector 2i mousePos = sf::Mouse::getPosition();
+        sf::Vector2i mousePos = sf::Mouse::getPosition();
         float initVelocity = object.getVelocity(displacement);
 
         sf::Event event;
