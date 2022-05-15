@@ -5,6 +5,8 @@ float Environment::gravity()
 	return 0.0f;
 }
 
+
+
 sf::RectangleShape Environment::base(sf::RenderWindow& window)
 {
 	int width = window.getSize().x;

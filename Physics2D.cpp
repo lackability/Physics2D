@@ -2,6 +2,7 @@
 #include "imgui/imgui-SFML.h"
 #include "Object.h"
 #include "Environment.h"
+#include "Collision.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
@@ -14,6 +15,7 @@ int main()
     ImGui::SFML::Init(window);
     //making environemtn now
     Environment environment;
+    Collision c_detector;
 
     sf::RectangleShape base = environment.base(window);
 
@@ -38,7 +40,7 @@ int main()
 
     while (window.isOpen()) {
         sf::Vector2f initPos = object.getShape().getPosition();
-        sf::Vector2i mousePos = sf::Mouse::getPosition();
+        sf::Vector 2i mousePos = sf::Mouse::getPosition();
         float initVelocity = object.getVelocity(displacement);
 
         sf::Event event;
@@ -67,12 +69,14 @@ int main()
         }
   
         
+        
 
 
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
+        c_detector.baseCollision(object.getShape(), environment.base(window));
         base.setFillColor(sf::Color::Cyan);
 
                                        // Background color edit
@@ -102,7 +106,7 @@ int main()
         displacement = object.getDisplacement(initPos); // comparsion between old and new pos
         /*float finalVelocity = object.getVelocity(displacement);
         std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;*/
-        std::cout << object.getShape().getGlobalBounds() << "," << object.getShape().getGlobalBounds() << std::endl;
+        /*std::cout << object.getShape().getGlobalBounds() << "," << object.getShape().getGlobalBounds() << std::endl;*/
 
 
         ImGui::SFML::Render(window);
