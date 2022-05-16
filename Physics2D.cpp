@@ -15,13 +15,13 @@ int main()
     ImGui::SFML::Init(window);
     //making environemtn now
     Environment environment;
-    Collision c_detector;
+    Collision c_detect;
 
     sf::RectangleShape base = environment.base(window);
 
     Object object; 
     Object object2;
-    sf::CircleShape circle(80);
+    sf::CircleShape circle(39);
     object.setShape(circle);
     int diameter = 2 * object.getShape().getRadius();
     bool selected = false; //select 
@@ -43,6 +43,9 @@ int main()
         sf::Vector2i mousePos = sf::Mouse::getPosition();
         float initVelocity = object.getVelocity(displacement);
 
+        //collison detection
+        c_detect.baseCollision(object.getShape(), environment.base(window));
+
         sf::Event event;
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
@@ -63,20 +66,18 @@ int main()
                 selected = false;
             }
         }
-
         if (selected == true) {
             object.select(selected); // is "hold" to drag command
         }
   
         
-        
-
-
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window
-        c_detector.baseCollision(object.getShape(), environment.base(window));
+
+        
+
         base.setFillColor(sf::Color::Cyan);
 
                                        // Background color edit
@@ -107,6 +108,7 @@ int main()
         /*float finalVelocity = object.getVelocity(displacement);
         std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;*/
         /*std::cout << object.getShape().getGlobalBounds() << "," << object.getShape().getGlobalBounds() << std::endl;*/
+        std::cout << object.getShape().getPosition().y << "," << base.getPosition().y << std::endl;
 
 
         ImGui::SFML::Render(window);

@@ -12,9 +12,11 @@
 void Collision::baseCollision(sf::CircleShape obj1, sf::RectangleShape base)
 {
 	float height = base.getPosition().y;
-	float objPos = (obj1.getPosition().y);
+	float objHeight = obj1.getPosition().y;
+	float diameter = 2 * obj1.getRadius();
 
-	if (base.getGlobalBounds().contains(obj1.getPosition().x, obj1.getPosition().y + (0, 2*obj1.getRadius()))){ // if it dips below the base
-		obj1.setPosition(obj1.getPosition().x, height - (2*obj1.getRadius()));
+	if (height <= objHeight + diameter){ // if it dips below the base
+		obj1.setPosition(400, 920);
+		std::cout << "OGMDMGOFGM" << std::endl;	
 	}
 }
