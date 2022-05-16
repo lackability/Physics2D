@@ -1,4 +1,5 @@
 #include "Collision.h"
+#include "Environment.h"
 #include "Object.h"
 
 //void Collision::Object2Object(sf::CircleShape obj1, sf::CircleShape obj2)
