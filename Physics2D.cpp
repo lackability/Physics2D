@@ -8,6 +8,9 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 
+
+std::vector<Object*> Object::list;
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "");
@@ -25,14 +28,12 @@ int main()
 
 
     sf::CircleShape circle(39);
+    circle.setPosition(50, 500);
     object.setShape(circle);
 
     sf::CircleShape circle2(50);
     circle2.setFillColor(sf::Color::Green);
     object2.setShape(circle2);
-    
-
-    bool selected = false; //select 
 
     sf::Color bgColor;
     float color[3] = { 0.f, 0.f, 0.f };
@@ -64,23 +65,24 @@ int main()
                 window.close();
             }
 
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    if (Object::getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) { //hitbox checker
-                        selected = true;
+            for (int i = 0; i < Object::list.size(); i++) {
+                if (event.type == sf::Event::MouseButtonPressed) {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
+                        if (Object::list[i]->getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) { //hitbox checker
+                            Object::list[i]->setSelected(true);
+                        }
                     }
                 }
-            }
-
-            if (event.type == sf::Event::MouseButtonReleased) {
-                selected = false;
+                if (Object::list[i]->getSelected()) {
+                    Object::list[i]->select(true); // is "hold" to drag command
+                }
+                if (event.type == sf::Event::MouseButtonReleased) {
+                    Object::list[i]->setSelected(false);
+                }
             }
         }
-        if (selected == true) {
-            object.select(selected); // is "hold" to drag command
-        }
-  
         
+  
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
@@ -119,7 +121,7 @@ int main()
         /*float finalVelocity = object.getVelocity(displacement);
         std::cout << object.getAcceleration(initVelocity, finalVelocity) << std::endl;*/
         /*std::cout << object.getShape().getGlobalBounds() << "," << object.getShape().getGlobalBounds() << std::endl;*/
-        std::cout << object.getShape().getPosition().y << "," << base.getPosition().y << std::endl;
+        /*std::cout << object.getShape().getPosition().y << "," << base.getPosition().y << std::endl;*/
 
 
         ImGui::SFML::Render(window);
@@ -132,6 +134,7 @@ int main()
         
 
     }
+
 
     ImGui::SFML::Shutdown();
 }

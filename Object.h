@@ -12,6 +12,7 @@ class Object
 		sf::CircleShape shape; // circle shape can make triangles, any other geometrical standard shape
 		bool breakable; 
 		int mass; //in terms of grams or kilograms
+		bool selected = false;
 
 
 	public:
@@ -22,9 +23,10 @@ class Object
 
 		bool select(bool selected); // select operation, returns isSelected t/f
 
+
+		static std::vector<Object*> list;
 		Object() {
-			std::vector<Object> list;
-			for (auto item : list) {}
+			list.push_back(this);
 		};
 
 		sf::CircleShape getShape() {
@@ -51,8 +53,13 @@ class Object
 			breakable = status;
 		};
 
+		bool getSelected() {
+			return selected;
+		}
 		
-		
+		void setSelected(bool Nselected) {
+			selected = Nselected;
+		}
 		
 };
 
