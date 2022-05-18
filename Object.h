@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -21,9 +22,18 @@ class Object
 
 		bool select(bool selected); // select operation, returns isSelected t/f
 
+		Object() {
+			std::vector<Object> list;
+			for (auto item : list) {}
+		};
+
 		sf::CircleShape getShape() {
 			return shape;
-		}
+		};
+
+		void setShape(sf::CircleShape newshape) {
+			shape = newshape;
+		};
 
 		int getMass() {
 			return mass;
@@ -41,9 +51,7 @@ class Object
 			breakable = status;
 		};
 
-		void setShape(sf::CircleShape newshape) {
-			shape = newshape;
-		}
+		
 		
 		
 };

@@ -1,12 +1,5 @@
 #include "Environment.h"
 
-float Environment::gravity()
-{
-	return 9.8f;
-}
-
-
-
 sf::RectangleShape Environment::base(sf::RenderWindow& window)
 {
 	int width = window.getSize().x;
@@ -18,3 +11,4 @@ sf::RectangleShape Environment::base(sf::RenderWindow& window)
 	//should be the lowest point of the window
 	return floor;
 }
+

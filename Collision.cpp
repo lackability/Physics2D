@@ -1,6 +1,5 @@
 #include "Collision.h"
-#include "Environment.h"
-#include "Object.h"
+
 
 //void Collision::Object2Object(sf::CircleShape obj1, sf::CircleShape obj2)
 //{	// hard, have velocity be attached to an object, and at the angle that it is hitting it at.
@@ -9,6 +8,17 @@
 //		if
 //	}
 //}
+
+void Collision::Object2Object(sf::CircleShape obj1, sf::CircleShape obj2)
+{
+	sf::FloatRect obj1border = obj1.getGlobalBounds();
+	sf::FloatRect obj2border = obj2.getGlobalBounds();
+
+	if (obj1border.intersects(obj2border)) {
+		std::cout << "hrfjdi" << std::endl;
+	}
+
+}
 
 void Collision::baseCollision(sf::CircleShape obj1, sf::RectangleShape base)
 {

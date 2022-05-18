@@ -15,18 +15,26 @@ int main()
     ImGui::SFML::Init(window);
     //making environemtn now
     Environment environment;
+
     Collision c_detect;
 
     sf::RectangleShape base = environment.base(window);
 
     Object object; 
     Object object2;
+
+
     sf::CircleShape circle(39);
     object.setShape(circle);
-    int diameter = 2 * object.getShape().getRadius();
-    bool selected = false; //select 
-    sf::Color bgColor;
 
+    sf::CircleShape circle2(50);
+    circle2.setFillColor(sf::Color::Green);
+    object2.setShape(circle2);
+    
+
+    bool selected = false; //select 
+
+    sf::Color bgColor;
     float color[3] = { 0.f, 0.f, 0.f };
 
     // let's use char array as buffer, see next parts
@@ -45,8 +53,10 @@ int main()
 
         //collison detection
         c_detect.baseCollision(object.getShape(), environment.base(window));
+        c_detect.Object2Object(object.getShape(), object2.getShape());
 
         sf::Event event;
+
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
 
@@ -56,7 +66,7 @@ int main()
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button(sf::Mouse::Left))) {
-                    if (object.getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) { //hitbox checker
+                    if (Object::getShape().getGlobalBounds().contains((sf::Vector2f)mousePos)) { //hitbox checker
                         selected = true;
                     }
                 }
@@ -102,6 +112,7 @@ int main()
 
         window.clear(bgColor); // fill background with color
 
+
         //console outputs
         
         displacement = object.getDisplacement(initPos); // comparsion between old and new pos
@@ -114,6 +125,7 @@ int main()
         ImGui::SFML::Render(window);
 
         window.draw(object.getShape());
+        window.draw(object2.getShape());
         window.draw(base);
 
         window.display();

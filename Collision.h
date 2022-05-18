@@ -1,4 +1,6 @@
 #pragma once
+#include "Environment.h"
+#include "Object.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
