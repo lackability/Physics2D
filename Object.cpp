@@ -1,5 +1,15 @@
 #include "Object.h"
 
+Object::Object(Environment* environment)
+{
+	list.push_back(this);
+	this->environment = environment;
+	this->selected = false;
+	this->breakable = false;
+	this->mass = 0;
+	this->weight = 0;
+}
+
 bool Object::select(bool selected)
 {
 	//can replace with rectangle shape
@@ -11,27 +21,87 @@ bool Object::select(bool selected)
 	return false;
 }
 
-float Object::getWeight(float gravity, int mass) //returns weight in newtons/unit
+
+void Object::update()
 {
-	float weight = gravity * mass;
+	velocity += acceleration;
+	position += velocity;
+	shape.setPosition(position);
+}
+
+sf::CircleShape Object::getShape()
+{
+	return shape;
+}
+
+sf::Vector2f Object::getPosition()
+{
+	return this->position;
+}
+
+sf::Vector2f Object::getVelocity()
+{
+	return this->velocity;
+}
+
+sf::Vector2f Object::getAcceleration()
+{
+	return this->acceleration;
+}
+
+float Object::getWeight()
+{
+	weight = mass * environment->getGravity();
 	return weight;
 }
 
-float Object::getVelocity(sf::Vector2f displacement) 
+void Object::setShape(sf::CircleShape newshape)
 {
-	float velocity = abs(sqrt(displacement.x*displacement.x + displacement.y* displacement.y)); //pygathorean theorem
-	return velocity;
+	shape = newshape;
 }
 
-float Object::getAcceleration(float initVelocity, float finalVelocity)
+void Object::setPosition(sf::Vector2f position)
 {
-	float acceleration = finalVelocity - initVelocity;
-	return acceleration;
+	this->position = position;
+	this->shape.setPosition(position);
 }
 
-sf::Vector2f Object::getDisplacement(sf::Vector2f initPos) //displacement in units
+void Object::setVelocity(sf::Vector2f velocity)
 {
-	sf::Vector2f finalPos = this->getShape().getPosition();
-	sf::Vector2f displacement = sf::Vector2f((finalPos.x - initPos.x), (finalPos.y - initPos.y));
-	return displacement;
+	this->velocity = velocity;
+}
+
+void Object::setAcceleration(sf::Vector2f acceleration)
+{
+	this->acceleration = acceleration;
+}
+
+int Object::getMass()
+{
+	return mass;
+}
+
+void Object::setMass(float grams)
+{
+	mass = grams;
+}
+
+bool Object::getBreakable()
+{
+	return breakable;
+}
+
+void Object::setBreakable(bool status)
+{
+	breakable = status;
+}
+
+bool Object::getSelected()
+{
+	return selected;
+}
+
+void Object::setSelected(bool Nselected)
+{
+	selected = Nselected;
 }
