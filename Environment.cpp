@@ -1,4 +1,13 @@
 #include "Environment.h"
+Environment::Environment()
+{
+	this->gravity = 9.8 / 60;
+}
+
+float Environment::windspeed()
+{
+	return 0.0f;
+}
 
 sf::RectangleShape Environment::base()
 {

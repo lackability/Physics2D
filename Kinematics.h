@@ -1,13 +1,14 @@
 #pragma once
-#include <iostream>
-#include "Object.h"
-#include "Environment.h"
+
+#include "Collision.h"
 #include <cmath>
 #include <SFML/Graphics.hpp>
+
 class Kinematics
 {	
 	public:
-		void forcesActive(Object& obj1, Environment env);
+		float objectAngle(Object obj1);
+		void forcesActive(Object& obj1, Collision& collisions, Environment env, sf::RenderWindow& window);
 		//this space will be served as a way to make calculations
 
 

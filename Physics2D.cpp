@@ -1,9 +1,8 @@
 #include "imgui/imgui.h"
 #include "imgui/imgui-SFML.h"
-#include "Object.h"
-#include "Environment.h"
-#include "Collision.h"
+
 #include "Kinematics.h"
+
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
@@ -38,14 +37,20 @@ int main()
 
     // the & in front of environment makes it return the address (pointer) of the environment variable
     Object object(&environment);
+    Object object2(&environment);
 
     sf::CircleShape circle(10);
     object.setShape(circle);
-
-    object.setPosition({ 100,100 });
-    object.setVelocity({ 1, 1 });
-    object.setAcceleration({ 0,0 });
+    object2.setShape(circle);
+    
+    object.setPosition({ 800,100 });
+    object.setVelocity({ 10, 1 });
+    object.setAcceleration({ 0, environment.getGravity() });
     object.setMass(50);
+    object2.setPosition({ 100, 100 });
+    object2.setVelocity({ 1, 4 });
+    object2.setAcceleration({ 0, environment.getGravity() });
+    object2.setMass(50);
 
     while (window.isOpen()) {
 
@@ -62,17 +67,18 @@ int main()
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-
         }
 
         // object updates
         for (int i = 0; i < Object::list.size(); i++) {
             Object::list[i]->update();
         }
-        c_detect.baseCollision(object);
-        c_detect.borderCollision(window, object);
 
-        kinematics.forcesActive(object, environment);
+        kinematics.forcesActive(object, c_detect, environment, window);
+        kinematics.forcesActive(object2, c_detect, environment, window);
+        /*kinematics.objectAngle(object);*/
+
+        c_detect.Object2Object(object, object2);
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
@@ -101,7 +107,8 @@ int main()
         ImGui::SFML::Render(window);
 
         window.draw(base);
-
+        
+        window.draw(object2.getShape());
         window.draw(object.getShape());
 
         window.display();

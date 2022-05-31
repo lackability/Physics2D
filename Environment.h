@@ -11,9 +11,12 @@ class Environment
 		
 
 	public:
+		Environment();
+
 		float windspeed(); //returns a value in meters per second
 		float floorFriction(); // complicated though process, unsure where it should go. 
 		sf::RectangleShape base(); //sorta like the water underneath a map, the base floor
+		sf::RectangleShape structure(); //floor beams pretty much;
 
 		float getGravity();
 		bool getfrictionState();
