@@ -1,15 +1,5 @@
 #include "Collision.h"
 
-
-
-//void Collision::Object2Object(sf::CircleShape obj1, sf::CircleShape obj2)
-//{	// hard, have velocity be attached to an object, and at the angle that it is hitting it at.
-//	// try not to import mass into the equation yet, just try velocity -> velocity transfer no outside systesm. 
-//	if (obj1.getGlobalBounds().intersects(obj2.getGlobalBounds())) { // if two objects intersect, ( point == point )
-//		if
-//	}
-//}
-
 bool Collision::Object2Object(Object& obj1, Object& obj2)
 {
 	sf::FloatRect obj1border = obj1.getShape().getGlobalBounds();
@@ -17,7 +7,9 @@ bool Collision::Object2Object(Object& obj1, Object& obj2)
 
 	if (obj1border.intersects(obj2border)) {
 		obj1.setVelocity({ -obj1.getVelocity().x, -obj1.getVelocity().y });
+		obj1.setPosition(obj1.getPosition() - _Math::normalize(obj1.getPosition()));
 		obj2.setVelocity({ -obj1.getVelocity().x, -obj2.getVelocity().y });
+		obj2.setPosition(obj2.getPosition() + _Math::normalize(obj2.getPosition()));
 		std::cout << "hrfjdi" << std::endl;
 	}
 	return false;

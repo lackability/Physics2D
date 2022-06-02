@@ -16,7 +16,7 @@ sf::RectangleShape Environment::base()
 	sf::RectangleShape floor;
 
 	floor.setSize(sf::Vector2f(width, height));
-	floor.setPosition(0, 400);
+	floor.setPosition(0, 720);
 	//should be the lowest point of the window
 	return floor;
 }

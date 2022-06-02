@@ -4,9 +4,8 @@ float Kinematics::objectAngle(Object obj1)
 {
 	float yVel = obj1.getVelocity().y; // postivie down, negative up
 	float xVel = obj1.getVelocity().x; // positive right, negative left
-	float sinovercos = yVel / xVel;
 
-	float angularDirection = atan(sinovercos) * (180/3.14); // will return quad 1 
+	float angularDirection = atan(yVel / xVel) * (180/3.14); // will return quad 1 
 
 	if (angularDirection < 0) {
 		if (yVel < 0 && xVel > 0) {
