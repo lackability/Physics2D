@@ -33,7 +33,7 @@ float Kinematics::objectAngle(Object obj1)
 void Kinematics::forcesActive(Object& obj1, Collision& collisions, Environment env, sf::RenderWindow& window)
 {
 	//OBJ ANGLE should be calculate upon when it his an object, where it is a ramp
-	float objAngle = objectAngle(obj1);
+	/*float objAngle = objectAngle(obj1);*/
 
 	//collisions
 	collisions.inAir(obj1, env, window);
@@ -60,7 +60,7 @@ void Kinematics::forcesActive(Object& obj1, Collision& collisions, Environment e
 
 	float allF = gravityF +  + appliedFtot; //gravity is negative since it needs to pull down
 
-	std::cout << allF << std::endl;
+	/*std::cout << allF << std::endl;*/
 
 }
 

@@ -34,23 +34,30 @@ int main()
     window.resetGLStates(); // call it if you only draw ImGui. Otherwise not needed.
     sf::Clock deltaClock;
 
+    /*sf::Texture arrow;
+    if (!arrow.loadFromFile("src/arr.png")) {
+        std::cout << "TEXTURE SUCKS" << std::endl;
+    }*/
+
+
 
     // the & in front of environment makes it return the address (pointer) of the environment variable
     Object object(&environment);
-    Object object2(&environment);
+    /*Object object2(&environment);*/
 
     sf::CircleShape circle(10);
     object.setShape(circle);
-    object2.setShape(circle);
+    /*object2.setShape(circle);*/
     
     object.setPosition({ 800,100 });
-    object.setVelocity({ 10, 1 });
+    object.setVelocity({ 1, 1 });
     object.setAcceleration({ 0, environment.getGravity() });
-    object.setMass(50);
-    object2.setPosition({ 100, 100 });
-    object2.setVelocity({ 1, 4 });
-    object2.setAcceleration({ 0, environment.getGravity() });
-    object2.setMass(50);
+    object.setMass(500);
+
+    //object2.setPosition({ 100, 100 });
+    //object2.setVelocity({ 1, 4 });
+    //object2.setAcceleration({ 0, environment.getGravity() });
+    //object2.setMass(50);
 
     while (window.isOpen()) {
 
@@ -75,10 +82,10 @@ int main()
         }
 
         kinematics.forcesActive(object, c_detect, environment, window);
-        kinematics.forcesActive(object2, c_detect, environment, window);
-        /*kinematics.objectAngle(object);*/
+        /*kinematics.forcesActive(object2, c_detect, environment, window);*/
+        kinematics.objectAngle(object);
 
-        c_detect.Object2Object(object, object2);
+        /*c_detect.Object2Object(object, object2);*/
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
@@ -108,7 +115,7 @@ int main()
 
         window.draw(base);
         
-        window.draw(object2.getShape());
+        /*window.draw(object2.getShape());*/
         window.draw(object.getShape());
 
         window.display();
