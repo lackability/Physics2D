@@ -87,6 +87,12 @@ int main()
 
         /*c_detect.Object2Object(object, object2);*/
 
+        // 
+        //
+        // drawing and everything below
+        //
+        //
+
         ImGui::SFML::Update(window, deltaClock.restart());
 
         ImGui::Begin("Sample window"); // begin window

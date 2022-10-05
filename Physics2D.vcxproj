@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="EnvironmentalObject.cpp" />
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Physics2D.cpp" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="EnvironmentalObject.h" />
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="SFML-2.5.1\include\imgui\imconfig-SFML.h" />

@@ -31,13 +31,4 @@ float Environment::getGravity()
 	return gravity;
 }
 
-void Environment::setfrictionState(bool state)
-{
-	frictionState = state;
-}
-
-bool Environment::getfrictionState()
-{
-	return frictionState;
-}
 

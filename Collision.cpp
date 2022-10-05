@@ -24,6 +24,7 @@ bool Collision::Object2Object(Object& obj1, Object& obj2)
 
 }
 
+// if the ball is literally not colliding with side of screen or floor
 bool Collision::inAir(Object& obj1, Environment& environment, sf::RenderWindow& window)
 {
 	bool floorC = floorCollision(obj1, environment);
@@ -47,7 +48,7 @@ bool Collision::floorCollision(Object& obj1, Environment& environment)
 	float diameter = 2 * obj1.getShape().getRadius();
 
 	if (obj1.getShape().getGlobalBounds().intersects(environment.base().getGlobalBounds())){ // if it dips below the base
-		obj1.setPosition(objPos - _Math::normalize(objPos));
+		obj1.setPosition({ objPos.x, height - diameter });
 
 		//remove this velocity evenntually and change to gravitaional forces
 		obj1.setVelocity(sf::Vector2f(obj1.getVelocity().x, -obj1.getVelocity().y * 0.94));

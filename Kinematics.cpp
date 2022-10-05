@@ -45,6 +45,8 @@ void Kinematics::forcesActive(Object& obj1, Collision& collisions, Environment e
 
 		
 	//normal force
+	// why does this condition need to be met to be bounced on the side of hte windows?
+	// I.E. test with this conditional commented. 
 	if (collisions.inAir(obj1, env, window)) {
 		float normalF = 0;
 	}
@@ -58,7 +60,7 @@ void Kinematics::forcesActive(Object& obj1, Collision& collisions, Environment e
 	float appliedFy = (obj1.getMass() * obj1.getAcceleration().y);
 	float appliedFtot = sqrt(appliedFx * appliedFx + appliedFy * appliedFy);
 
-	float allF = gravityF +  + appliedFtot; //gravity is negative since it needs to pull down
+	/*float allF = gravityF +  + appliedFtot;*/ //gravity is negative since it needs to pull down
 
 	/*std::cout << allF << std::endl;*/
 
