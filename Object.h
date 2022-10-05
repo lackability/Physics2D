@@ -15,7 +15,7 @@ class Object
 		sf::CircleShape shape; // circle shape can make triangles, any other geometrical standard shape
 		sf::Vector2f position;
 		sf::Vector2f velocity;
-		sf::Vector2f acceleration;
+		sf::Vector2f acceleration; 
 		float weight;
 		bool selected;
 		bool breakable;
